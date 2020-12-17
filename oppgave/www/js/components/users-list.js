@@ -15,6 +15,7 @@ class UsersList extends LitElement {
     // sett default verdier
     this.users = [];
     this.selectedUser = { // den brukeren som er valgt fra lista (klikket på)
+      uid: '',
       uname: '',
       firstName: '',
       lastName: '',
