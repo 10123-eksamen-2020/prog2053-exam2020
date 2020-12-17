@@ -28,22 +28,22 @@ class EditUser extends LitElement {
   render() {
     return html `
       <form>
-        <lable for="uname">User-name</lable>
+        <lable for="uname">Epost</lable>
         <input type="email" id="uname" name="uname" placeholde="${this.user.uname}">
 
-        <lable for="firstName">First name</lable>
+        <lable for="firstName">Fornavn</lable>
         <input type="text" id="firstName" name="firstName" placeholde="${this.user.firstName}">
 
-        <lable for="lastName">Last name</lable>
+        <lable for="lastName">Etternavn</lable>
         <input type="text" id="lastName" name="lastName" placeholde="${this.user.lastName}">
 
-        <lable for="oldpwd">Old password</lable>
+        <lable for="oldpwd">Passord</lable>
         <input type="password" id="oldpwd" name="oldpwd" placeholde="${this.user.oldpwd}">
 
-        <lable for="pwd">New password</lable>
+        <lable for="pwd">Nytt passord</lable>
         <input type="password" id="pwd" name="pwd" placeholde="${this.user.pwd}">
 
-        <button type="submit" @submit="${(e) => {this.updateUser(e)}}"> Update </button>
+        <button type="submit" @submit="${(e) => {this.updateUser(e)}}"> Oppdater </button>
         <p> ${this.msg} </p>
       </form>
     `;
