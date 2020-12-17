@@ -10,7 +10,7 @@ class EditUser extends LitElement {
 
   constructor() {
     super();
-    this.msg = '';
+    this.msg = '';  // error or success message
   }
 
   static get styles() {
@@ -24,37 +24,38 @@ class EditUser extends LitElement {
     `;
   }
 
-  // din kode her
   render() {
-    return html `
-      <form>
-        <lable for="uname">Epost</lable>
-        <input type="email" id="uname" name="uname" placeholde="${this.user.uname}">
+    if (this.user != null) {  // active when user is selected at users-list.js
+      return html `
+        <form>
+          <lable for="uname">Epost</lable>
+          <input type="email" id="uname" name="uname" placeholde="${this.user.uname}">
 
-        <lable for="firstName">Fornavn</lable>
-        <input type="text" id="firstName" name="firstName" placeholde="${this.user.firstName}">
+          <lable for="firstName">Fornavn</lable>
+          <input type="text" id="firstName" name="firstName" placeholde="${this.user.firstName}">
 
-        <lable for="lastName">Etternavn</lable>
-        <input type="text" id="lastName" name="lastName" placeholde="${this.user.lastName}">
+          <lable for="lastName">Etternavn</lable>
+          <input type="text" id="lastName" name="lastName" placeholde="${this.user.lastName}">
 
-        <lable for="oldpwd">Passord</lable>
-        <input type="password" id="oldpwd" name="oldpwd" placeholde="${this.user.oldpwd}">
+          <lable for="oldpwd">Passord</lable>
+          <input type="password" id="oldpwd" name="oldpwd" placeholde="${this.user.oldpwd}">
 
-        <lable for="pwd">Nytt passord</lable>
-        <input type="password" id="pwd" name="pwd" placeholde="${this.user.pwd}">
+          <lable for="pwd">Nytt passord</lable>
+          <input type="password" id="pwd" name="pwd" placeholde="${this.user.pwd}">
 
-        <button type="submit" @submit="${(e) => {this.updateUser(e)}}"> Oppdater </button>
-        <p> ${this.msg} </p>
-      </form>
-    `;
+          <button type="submit" @submit="${(e) => {this.updateUser(e)}}"> Oppdater </button>
+          <p> ${this.msg} </p>
+        </form>
+      `;
+    }
   }
 
   updateUser(e) {
     var updateData = new FormData(e.target.form);
-    updateData.append("uid", this.user.uid); // is this variabel
+    updateData.append("uid", this.user.uid);  // this variable is not changed
 
     fetch('api/updateUser.php', {
-      method: 'GET',
+      method: 'POST',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify(updateData)
     }).then(response => response.json()).then(data => {
