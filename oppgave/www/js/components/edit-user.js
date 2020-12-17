@@ -10,7 +10,7 @@ class EditUser extends LitElement {
 
   constructor() {
     super();
-    this.msg = 'Error';
+    this.msg = '';
   }
 
   static get styles() {
